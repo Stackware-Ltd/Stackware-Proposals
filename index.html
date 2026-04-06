@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Stackware — car dealership Windows software. Your data on our cloud or on a PC at your office; VPN when you need in from outside." />
+  <title>Stackware — Car dealer software (presentation)</title>
+  <link rel="icon" type="image/png" href="Stackware%20Logo%20Transparent%20Icon.png" />
+  <link rel="apple-touch-icon" href="Stackware%20Logo%20Transparent%20Icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --celtic-blue: #2b70e0;
+      --brand-dark: #0f1421;
+      --cream: #f5f5f0;
+      --white: #ffffff;
+      --safe-left: clamp(2.25rem, 5.5vw, 3.75rem);
+      --safe-right: clamp(1rem, 3vw, 2rem);
+      --safe-bottom: clamp(1.25rem, 3vh, 2rem);
+      --safe-top: clamp(2.75rem, 6vh, 3.75rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      background: var(--brand-dark);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .slide-kicker {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      text-wrap: balance;
+      word-break: normal;
+      overflow-wrap: normal;
+    }
+
+    .deck {
+      height: 100vh;
+      height: 100dvh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: var(--safe-top);
+    }
+
+    /* Safe margins: clear left nav dots + top hint; bottom stays open for content */
+    .slide {
+      min-height: 100vh;
+      min-height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+      position: relative;
+    }
+
+    .slide--center {
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide--center h1,
+    .slide--center h2,
+    .slide--center .slide-kicker,
+    .slide--center .slide-sub { text-align: center; }
+
+    .slide--dark { background: var(--brand-dark); }
+    .slide--cream { background: var(--cream); color: #141820; }
+
+    /* Title slide: car photo + readable overlay */
+    #s-1.slide--dark {
+      background-color: var(--brand-dark);
+      background-image:
+        linear-gradient(
+          115deg,
+          rgba(15, 20, 33, 0.99) 0%,
+          rgba(15, 20, 33, 0.93) 40%,
+          rgba(15, 20, 33, 0.82) 68%,
+          rgba(15, 20, 33, 0.62) 100%
+        ),
+        url("presentation-hero-car.jpg");
+      background-size: cover;
+      background-position: 75% 45%;
+      background-repeat: no-repeat;
+    }
+
+    #s-1 .slide-hero__inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      /* Use almost full slide width so copy runs in wide lines, not a vertical strip */
+      max-width: min(72rem, calc(100vw - var(--safe-left) - var(--safe-right) - 0.25rem));
+      margin: 0 auto;
+    }
+
+    .slide--cream h2,
+    .slide--cream h3,
+    .slide--cream .slide-kicker { color: var(--brand-dark); }
+    .slide--cream .slide-sub { color: #3d4555; }
+
+    .slide-kicker {
+      font-size: clamp(0.78rem, 1.9vw, 0.98rem);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--celtic-blue);
+      margin: 0 0 0.5rem;
+    }
+
+    .slide--cream .slide-kicker { color: #2563c4; }
+
+    h1 {
+      font-size: clamp(2rem, 5.2vw, 3.35rem);
+      font-weight: 800;
+      margin: 0 0 0.5rem;
+      max-width: none;
+    }
+
+    h2 {
+      font-size: clamp(1.55rem, 3.8vw, 2.4rem);
+      margin: 0 0 0.45rem;
+      max-width: none;
+    }
+
+    /* Centred slides: wide measure so words are not one-per-line */
+    .slide--center h1 {
+      max-width: min(34rem, 94vw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide--center h2 {
+      max-width: min(32rem, 94vw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide--center .slide-kicker {
+      max-width: min(36rem, 94vw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide-sub {
+      font-size: clamp(1.05rem, 2.35vw, 1.32rem);
+      color: rgba(255, 255, 255, 0.7);
+      max-width: min(36rem, 94vw);
+      margin: 0;
+      line-height: 1.62;
+    }
+
+    .slide--center .slide-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide--cream .slide-sub { color: #4a5568; }
+
+    .slide-sub--hero {
+      max-width: min(40rem, 92vw) !important;
+      text-align: center;
+    }
+
+    #s-1 .slide-kicker {
+      font-size: clamp(0.85rem, 2.05vw, 1.02rem);
+      letter-spacing: 0.18em;
+      margin-bottom: 0.75rem;
+      max-width: 100%;
+    }
+
+    #s-1 h1 {
+      font-size: clamp(2.2rem, 6vw, 3.85rem);
+      line-height: 1.16;
+      margin-bottom: 0.95rem;
+      max-width: 100%;
+      text-wrap: wrap;
+    }
+
+    /* Hero deck blurb: full width of inner — overrides narrow .slide--center / .slide-sub caps */
+    #s-1 .slide-sub.slide-sub--hero {
+      max-width: 100% !important;
+      width: 100%;
+      font-size: clamp(1rem, 2.1vw, 1.28rem);
+      line-height: 1.58;
+      color: rgba(255, 255, 255, 0.9);
+      text-wrap: pretty;
+      hyphens: manual;
+    }
+
+    @media (min-width: 900px) {
+      #s-1.slide--center .slide-hero__inner {
+        text-align: left;
+      }
+      #s-1 .logo-row {
+        display: flex;
+        justify-content: flex-start;
+      }
+      #s-1 .logo-row img {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      #s-1.slide--center h1,
+      #s-1.slide--center .slide-kicker,
+      #s-1 .slide-sub.slide-sub--hero {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    #s-1 .logo-row img {
+      height: clamp(46px, 9vw, 68px);
+    }
+
+    .logo-row { margin-bottom: 1.25rem; }
+    .logo-row img {
+      height: clamp(38px, 7vw, 52px);
+      width: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* —— Image slides: text column + visual (no text under fixed chrome) —— */
+    .slide-split {
+      display: grid;
+      gap: clamp(1rem, 2.5vw, 1.75rem);
+      align-items: center;
+      width: 100%;
+      max-width: min(96vw, 1480px);
+      margin: 0 auto;
+      flex: 1;
+      min-height: 0;
+    }
+
+    @media (min-width: 900px) {
+      .slide-split {
+        grid-template-columns: minmax(200px, 26%) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 899px) {
+      .slide-split {
+        grid-template-columns: 1fr;
+      }
+      .slide-split .slide-split__visual { order: -1; }
+    }
+
+    .slide-split__text {
+      text-align: left;
+      padding-right: 0.5rem;
+    }
+
+    .slide-split__text h2 {
+      max-width: 100%;
+      margin-bottom: 0.35rem;
+      text-wrap: balance;
+    }
+
+    .slide-split__text .slide-kicker {
+      margin-bottom: 0.35rem;
+    }
+
+    .caption-label {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(0.74rem, 1.4vw, 0.88rem);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin: 0.65rem 0 0.35rem;
+    }
+
+    .slide--cream .caption-label { color: #6b7280; }
+
+    .slide-desc {
+      font-size: clamp(1rem, 1.9vw, 1.16rem);
+      line-height: 1.58;
+      color: rgba(255, 255, 255, 0.72);
+      margin: 0 0 0.5rem;
+    }
+
+    .slide-desc:last-child { margin-bottom: 0; }
+
+    .slide--cream .slide-desc { color: #4b5563; }
+
+    .slide-split__visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 0;
+    }
+
+    .slide-split__visual img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: min(calc(100dvh - var(--safe-top) - var(--safe-bottom) - 0.75rem), 92vh);
+      object-fit: contain;
+      object-position: center center;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .slide--cream .slide-split__visual img {
+      border-color: rgba(15, 20, 33, 0.1);
+      box-shadow: 0 8px 32px rgba(15, 20, 33, 0.12);
+    }
+
+    /* —— Dense content slides (packages / hosting) —— */
+    .slide-body {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-right: 0.25rem;
+    }
+
+    .slide-body::-webkit-scrollbar { width: 6px; }
+    .slide-body::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+
+    .slide--cream .slide-body::-webkit-scrollbar-thumb {
+      background: rgba(15, 20, 33, 0.2);
+    }
+
+    .slide-title-row {
+      margin-bottom: 0.85rem;
+      text-align: left;
+    }
+
+    .slide-title-row h2 { max-width: none; }
+
+    .pkg-grid {
+      display: grid;
+      gap: clamp(1rem, 2.5vw, 1.5rem);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    }
+
+    .pkg-grid--impl {
+      align-items: stretch;
+    }
+
+    .pkg-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 1rem 1rem 1.05rem;
+      text-align: left;
+    }
+
+    .slide--cream .pkg-card {
+      background: var(--white);
+      border-color: rgba(15, 20, 33, 0.1);
+      box-shadow: 0 2px 12px rgba(15, 20, 33, 0.06);
+    }
+
+    /* Large implementation packages */
+    .pkg-card--impl {
+      padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.25rem, 2.5vw, 1.85rem);
+    }
+
+    .pkg-card--impl .impl-badge {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--celtic-blue);
+      margin: 0 0 0.5rem;
+    }
+
+    .slide--cream .pkg-card--impl .impl-badge { color: #1d5fc4; }
+
+    .pkg-card--impl .impl-title {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+      font-weight: 800;
+      margin: 0 0 0.35rem;
+      line-height: 1.15;
+    }
+
+    .pkg-card--impl .impl-price {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.65rem, 4vw, 2.35rem);
+      font-weight: 800;
+      color: var(--celtic-blue);
+      margin: 0 0 0.5rem;
+      line-height: 1.1;
+    }
+
+    .slide--cream .pkg-card--impl .impl-price { color: #1d5fc4; }
+
+    .pkg-card--impl .impl-note {
+      font-size: clamp(0.95rem, 1.75vw, 1.08rem);
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0 0 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .slide--cream .pkg-card--impl .impl-note {
+      color: #4b5563;
+      border-bottom-color: rgba(15, 20, 33, 0.1);
+    }
+
+    .pkg-card--impl .mini-h {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      margin: 0.85rem 0 0.4rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .slide--cream .pkg-card--impl .mini-h { color: #374151; }
+
+    .pkg-card--impl .mini-h:first-of-type { margin-top: 0; }
+
+    .pkg-card--impl ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: clamp(0.98rem, 1.75vw, 1.1rem);
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .slide--cream .pkg-card--impl ul { color: #374151; }
+
+    .pkg-card--impl ul li { margin-bottom: 0.35rem; }
+
+    .pkg-card--impl ul.excl {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .pkg-card--impl ul.excl li {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+
+    .pkg-card--impl ul.excl li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      opacity: 0.5;
+    }
+
+    .pkg-card h3 {
+      font-size: 0.95rem;
+      margin: 0 0 0.15rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pkg-card .price-tag {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--celtic-blue);
+    }
+
+    .slide--cream .pkg-card .price-tag { color: #1d5fc4; }
+
+    .pkg-card .tagline {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      margin: 0 0 0.55rem;
+      line-height: 1.4;
+    }
+
+    .pkg-card .mini-h {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0.5rem 0 0.25rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .slide--cream .pkg-card .mini-h { color: #6b7280; }
+
+    .pkg-card ul {
+      margin: 0;
+      padding-left: 1rem;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .slide--cream .pkg-card ul { color: #4b5563; }
+
+    .pkg-card ul.excl {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .pkg-card ul.excl li {
+      padding-left: 0.85rem;
+      position: relative;
+    }
+
+    .pkg-card ul.excl li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      opacity: 0.45;
+    }
+
+    /* After-sales: large readable tiers */
+    .aftersales-grid {
+      display: grid;
+      gap: clamp(0.85rem, 2vw, 1.15rem);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    }
+
+    .svc-tier {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      padding: clamp(1.1rem, 2vw, 1.45rem);
+      text-align: left;
+    }
+
+    .slide--cream .svc-tier {
+      background: var(--white);
+      border-color: rgba(15, 20, 33, 0.1);
+      box-shadow: 0 2px 14px rgba(15, 20, 33, 0.06);
+    }
+
+    .svc-tier .svc-name {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      font-weight: 800;
+      margin: 0 0 0.2rem;
+    }
+
+    .svc-tier .svc-price {
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(1.25rem, 2.8vw, 1.65rem);
+      font-weight: 800;
+      color: var(--celtic-blue);
+      margin: 0 0 0.65rem;
+    }
+
+    .slide--cream .svc-tier .svc-price { color: #1d5fc4; }
+
+    .svc-tier .svc-cycle {
+      font-size: clamp(0.88rem, 1.5vw, 0.98rem);
+      color: rgba(255, 255, 255, 0.62);
+      margin: 0 0 0.5rem;
+      line-height: 1.5;
+    }
+
+    .slide--cream .svc-tier .svc-cycle { color: #4b5563; }
+
+    .svc-tier ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: clamp(0.9rem, 1.55vw, 1.02rem);
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .slide--cream .svc-tier ul { color: #374151; }
+
+    .svc-tier li { margin-bottom: 0.3rem; }
+
+    .slide-title-row .slide-sub--lg {
+      font-size: clamp(1.02rem, 2.05vw, 1.22rem);
+      line-height: 1.58;
+      max-width: none;
+      margin-top: 0.4rem;
+    }
+
+    .slide--cream .slide-title-row .slide-sub--lg { color: #4b5563; }
+
+    .slide--dark .slide-title-row .slide-sub--lg {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .fine-print--lg {
+      font-size: clamp(0.9rem, 1.55vw, 1.02rem);
+      line-height: 1.55;
+      opacity: 0.65;
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .host-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .host-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 1.1rem 1.15rem;
+      text-align: left;
+    }
+
+    .slide--cream .host-card {
+      background: var(--white);
+      border-color: rgba(15, 20, 33, 0.1);
+    }
+
+    .host-card h3 {
+      font-size: 1.05rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .host-card p,
+    .host-card li {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.68);
+      margin: 0 0 0.45rem;
+    }
+
+    .slide--cream .host-card p,
+    .slide--cream .host-card li { color: #4b5563; }
+
+    .host-card ul {
+      margin: 0.35rem 0 0;
+      padding-left: 1.05rem;
+    }
+
+    .host-card li { margin-bottom: 0.25rem; }
+
+    .fine-print {
+      font-size: 0.72rem;
+      line-height: 1.5;
+      opacity: 0.55;
+      margin-top: 0.85rem;
+      text-align: left;
+    }
+
+    /* —— Nav: LEFT column so right side stays clean —— */
+    .nav-ui {
+      position: fixed;
+      left: clamp(0.45rem, 1.5vw, 0.85rem);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      pointer-events: auto;
+      padding: 0.35rem 0.2rem;
+    }
+
+    .nav-ui button {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .nav-ui button:hover {
+      background: rgba(255, 255, 255, 0.45);
+      transform: scale(1.12);
+    }
+
+    .nav-ui button[aria-current="true"] {
+      background: var(--celtic-blue);
+      transform: scale(1.2);
+    }
+
+    /* Hint: TOP centre — frees bottom edge for captions */
+    .hint {
+      position: fixed;
+      top: clamp(0.45rem, 1.5vh, 0.75rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      pointer-events: none;
+      padding: 0.3rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 20, 33, 0.5);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Before / after transformation (readable body + visual “chaos” stack) */
+    .transform-lede {
+      font-size: clamp(1.05rem, 2.25vw, 1.3rem);
+      line-height: 1.62;
+      margin: 0 0 1.05rem;
+    }
+
+    .slide--cream .transform-lede { color: #3d4555; }
+
+    .slide--dark .transform-lede {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .transform-bullets {
+      margin: 0;
+      padding-left: 1.3rem;
+      font-size: clamp(1.02rem, 2.15vw, 1.24rem);
+      line-height: 1.62;
+    }
+
+    .slide--cream .transform-bullets { color: #374151; }
+    .slide--dark .transform-bullets { color: rgba(255, 255, 255, 0.88); }
+    .transform-bullets li { margin-bottom: 0.7rem; }
+
+    .chaos-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0.5rem 0 1rem;
+    }
+
+    .chaos-card {
+      width: 100%;
+      max-width: 380px;
+      background: var(--white);
+      border: 1px solid rgba(15, 20, 33, 0.12);
+      border-radius: 11px;
+      box-shadow: 0 14px 44px rgba(15, 20, 33, 0.14);
+      overflow: hidden;
+      margin-top: -26px;
+    }
+
+    .chaos-card:first-child {
+      margin-top: 0;
+      transform: rotate(-2deg);
+    }
+
+    .chaos-card:nth-child(2) {
+      transform: rotate(2.2deg) translateX(10px);
+    }
+
+    .chaos-card:nth-child(3) {
+      transform: rotate(-1.2deg) translateX(-8px);
+    }
+
+    .chaos-bar {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(0.72rem, 1.35vw, 0.85rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.5rem 0.85rem;
+      color: #fff;
+    }
+
+    .chaos-bar--wa { background: #128c7e; }
+    .chaos-bar--xl { background: #1d6f42; }
+    .chaos-bar--note { background: #4b5563; }
+
+    .chaos-body {
+      padding: 0.75rem 0.9rem 0.95rem;
+      font-size: clamp(0.8rem, 1.45vw, 0.92rem);
+      line-height: 1.55;
+      color: #374151;
+    }
+
+    .chaos-fake--dim {
+      opacity: 0.72;
+      font-size: 0.92em;
+    }
+
+    @media (max-width: 899px) {
+      .chaos-card,
+      .chaos-card:first-child,
+      .chaos-card:nth-child(2),
+      .chaos-card:nth-child(3) {
+        margin-top: 0;
+        transform: none;
+      }
+
+      .chaos-card + .chaos-card {
+        margin-top: 0.75rem;
+      }
+    }
+
+    #s-13 .slide-sub--hero {
+      font-size: clamp(1.08rem, 2.5vw, 1.38rem);
+    }
+
+    #s-13 .slide-sub--contact-links {
+      font-size: clamp(1rem, 2.1vw, 1.2rem);
+      line-height: 1.65;
+    }
+
+    /* —— Pricing slide (CAMAS) —— */
+    #s-12.slide--cream .slide-body {
+      flex: 0 1 auto;
+      overflow: visible;
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
+
+    .pricing-simple {
+      width: 100%;
+      max-width: 52rem;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .pricing-simple__eyebrow,
+    .pricing-simple__title,
+    .pricing-simple__label,
+    .pricing-simple__price {
+      font-family: "Montserrat", system-ui, sans-serif;
+    }
+
+    .pricing-simple__head {
+      text-align: center;
+      margin-bottom: clamp(0.55rem, 1.2vh, 0.75rem);
+      padding-bottom: clamp(0.45rem, 1vh, 0.6rem);
+      border-bottom: 1px solid rgba(15, 20, 33, 0.1);
+    }
+
+    .pricing-simple__eyebrow {
+      font-size: clamp(0.84rem, 1.52vw, 0.96rem);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--celtic-blue);
+      margin: 0 0 0.2rem;
+    }
+
+    .pricing-simple__title {
+      font-size: clamp(1.58rem, 3.65vw, 2.12rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+      color: var(--brand-dark);
+      margin: 0;
+    }
+
+    .pricing-simple__subtitle {
+      margin: 0.3rem auto 0;
+      max-width: 36rem;
+      font-size: clamp(0.94rem, 1.62vw, 1.05rem);
+      line-height: 1.55;
+      font-weight: 500;
+      color: #6b7280;
+    }
+
+    .pricing-simple__cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(0.85rem, 2vw, 1.25rem) clamp(1rem, 2.5vw, 1.75rem);
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .pricing-simple__cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pricing-simple__col .pricing-simple__label:first-child {
+      margin-top: 0;
+    }
+
+    .pricing-simple__price {
+      font-size: clamp(1.58rem, 3.9vw, 2.05rem);
+      font-weight: 800;
+      color: var(--celtic-blue);
+      margin: 0 0 0.25rem;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .pricing-simple__label {
+      font-size: clamp(0.74rem, 1.28vw, 0.84rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand-dark);
+      margin: 0.75rem 0 0.35rem;
+      padding-bottom: 0.28rem;
+      border-bottom: 2px solid rgba(43, 112, 224, 0.32);
+    }
+
+    .pricing-simple__note {
+      margin: 0 0 0.45rem;
+      font-size: clamp(0.94rem, 1.58vw, 1.03rem);
+      line-height: 1.58;
+      color: #4b5563;
+    }
+
+    .pricing-simple ul {
+      margin: 0 0 0.45rem;
+      padding-left: 1.1rem;
+      font-size: clamp(0.92rem, 1.52vw, 1.01rem);
+      line-height: 1.58;
+      color: #374151;
+    }
+
+    .pricing-simple ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .pricing-simple__foot {
+      margin-top: clamp(0.55rem, 1.2vh, 0.75rem);
+      padding-top: 0.55rem;
+      border-top: 1px solid rgba(15, 20, 33, 0.1);
+      font-size: clamp(0.84rem, 1.38vw, 0.92rem);
+      line-height: 1.55;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    @media print {
+      .deck { height: auto; overflow: visible; }
+      .slide { min-height: auto; page-break-after: always; }
+      .nav-ui, .hint { display: none; }
+      .slide { padding: 1.5rem; }
+      #s-1.slide--dark {
+        background-image: none;
+        background-color: var(--brand-dark);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck" tabindex="0" aria-label="Car dealership software presentation — scroll or arrow keys">
+    <!-- 1 -->
+    <section class="slide slide--dark slide--center" id="s-1" data-i="0">
+      <div class="slide-hero__inner">
+        <div class="logo-row">
+          <img src="Stackware%20Logo%20Transparent.png" alt="Stackware" width="220" height="48" />
+        </div>
+        <p class="slide-kicker">What this deck is</p>
+        <h1>Software for car dealers: stock, workshop &amp; books.</h1>
+        <p class="slide-sub slide-sub--hero"><strong>This deck</strong> is <strong>car-dealership software</strong> in plain language: <strong>stock</strong> on screen, <strong>workshop money per car</strong> (tyres, body, <strong>detailing / PPF</strong>), a <strong>proper expense book</strong>, and <strong>partner balances</strong> when money is pooled. For showrooms that run on <strong>WhatsApp</strong> today but need <strong>one ledger</strong> tomorrow. The <strong>application</strong> is a <strong>Windows program (.exe)</strong> on each PC. <strong>Cloud vs office</strong> is only <strong>where your database lives</strong>—on our servers or on <strong>your machine at the showroom</strong>. If the database stays at the office and you need access from outside, you use <strong>VPN</strong> into your network.</p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide slide--cream slide--center" id="s-2" data-i="1">
+      <p class="slide-kicker">Plain problem</p>
+      <h2>WhatsApp and Excel were never a ledger.</h2>
+      <p class="slide-sub">Picture Monday morning: <em>Which car is still in paint or PPF? Who paid the tyre bill? How much cash is really left?</em> Right now that lives in ten chats and three sheets—while customers expect the same story from sales, accounts, and the owner. This system puts <strong>each car</strong>, <strong>each bill</strong>, and <strong>each partner’s money</strong> in <strong>one place</strong>—so anyone you trust opens it and sees the same picture.</p>
+    </section>
+
+    <!-- 3 Before — transformation -->
+    <section class="slide slide--cream" id="s-3" data-i="2">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">Before — how many dealers still run the desk</p>
+          <h2>Ten chats, three Excels, photos of receipts.</h2>
+          <p class="transform-lede">Your team is not careless — the work is just split across too many places. Stock in one file, partner money in another, workshop bills buried in WhatsApp.</p>
+          <ul class="transform-bullets">
+            <li>Monday starts with <strong>“which file is the real one?”</strong></li>
+            <li>A tyre bill sits in a <strong>voice note</strong>, not in the book</li>
+            <li>Your accountant waits for <strong>clean totals</strong> that arrive late — or never</li>
+          </ul>
+        </div>
+        <div class="slide-split__visual" aria-hidden="true">
+          <div class="chaos-stack">
+            <div class="chaos-card">
+              <span class="chaos-bar chaos-bar--wa">WhatsApp — workshop group</span>
+              <div class="chaos-body">
+                Voice note 0:42<br />
+                <span class="chaos-fake--dim">Photo: IMG_8841.jpg</span><br />
+                “Bhai tyre wala 18,500 le gaya”
+              </div>
+            </div>
+            <div class="chaos-card">
+              <span class="chaos-bar chaos-bar--xl">CARS_MASTER_JUNE_FINAL_v2.xls</span>
+              <div class="chaos-body">
+                Row 47: ??? — price column empty<br />
+                <span class="chaos-fake--dim">Same car also in “Backup_old” tab</span>
+              </div>
+            </div>
+            <div class="chaos-card">
+              <span class="chaos-bar chaos-bar--note">Partners — “keep separate”</span>
+              <div class="chaos-body">
+                Running balance only in one person’s head
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 After — transformation -->
+    <section class="slide slide--dark" id="s-4" data-i="3">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">After — what you’re moving toward</p>
+          <h2>One login. One ledger. Same picture for everyone.</h2>
+          <p class="transform-lede">Each car, each bill, each partner line is <strong>posted once</strong> and shows up everywhere you allow — desk, owner, accountant.</p>
+          <ul class="transform-bullets">
+            <li>The stock list shows <strong>status and money</strong> without opening three apps</li>
+            <li>Expense + <strong>receipt photo</strong> on the <strong>same line</strong></li>
+            <li>Investor asks balance — you open <strong>one card</strong>, not a debate</li>
+          </ul>
+        </div>
+        <div class="slide-split__visual">
+          <img src="gcc-login-reference.png" alt="Goga Car Classic — sign-in screen: one login for the system" width="1024" height="714" loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Dashboard -->
+    <section class="slide slide--dark" id="s-5" data-i="4">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">Owner view</p>
+          <h2>The dashboard: “How’s the business?”</h2>
+          <p class="caption-label">On this screen</p>
+          <p class="slide-desc">Imagine a TV in the office: <strong>total value of the operation</strong>, <strong>money partners moved in or out</strong>, and <strong>simple charts</strong>—like “who holds how much of the pie” and how sales have been trending.</p>
+          <p class="caption-label">Why dealers care</p>
+          <p class="slide-desc">You and your partners look at <strong>one headline</strong> before you argue. No one stays up merging Excel the night before a meeting.</p>
+        </div>
+        <div class="slide-split__visual">
+          <img src="image%20(7).png" alt="Executive dashboard with valuation and partner charts" width="1400" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Investor -->
+    <section class="slide slide--cream" id="s-6" data-i="5">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">Partner money</p>
+          <h2>One file per investor</h2>
+          <p class="caption-label">On this screen</p>
+          <p class="slide-desc">Think <strong>partner card</strong>: name, phone, CNIC-style ID, how much they <strong>put in</strong>, any <strong>money taken out</strong>, date, who typed it, and whether they’re <strong>active</strong>.</p>
+          <p class="caption-label">Why dealers care</p>
+          <p class="slide-desc">When someone asks <strong>“what’s my balance?”</strong> you open their card—not a voice note from six months ago. <strong>Fair bookkeeping</strong> for pooled deals.</p>
+        </div>
+        <div class="slide-split__visual">
+          <img src="image%20(5).png" alt="Investor details form" width="1400" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Add a car -->
+    <section class="slide slide--dark" id="s-7" data-i="6">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">New stock</p>
+          <h2>Car arrives—open one form, done</h2>
+          <p class="caption-label">On this screen</p>
+          <p class="slide-desc">Drop in <strong>photos</strong>, set <strong>status</strong> (just bought, in prep…), then fill <strong>what you paid</strong>, <strong>who sold it to you</strong>, and any notes. One save when the keys land on the desk.</p>
+          <p class="caption-label">Why dealers care</p>
+          <p class="slide-desc">That <strong>same record</strong> feeds the stock list, workshop jobs, and later the sale. <strong>No retyping</strong> the chassis story in three places.</p>
+        </div>
+        <div class="slide-split__visual">
+          <img src="image%20(6).png" alt="Add a car workflow" width="1400" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Car listing -->
+    <section class="slide slide--cream" id="s-8" data-i="7">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">Stock book</p>
+          <h2>Every car on one list</h2>
+          <p class="caption-label">On this screen</p>
+          <p class="slide-desc">A table like a <strong>stock register</strong>: invoice no., <strong>who’s buying</strong>, <strong>which partner funded it</strong>, make/model/year, <strong>your asking price</strong>, and a colour tag—<strong>bought</strong>, <strong>in workshop</strong>, or <strong>sold</strong>.</p>
+          <p class="caption-label">Why dealers care</p>
+          <p class="slide-desc">Sales and accounts stop shouting across the room. They point at <strong>the same row</strong>. Search and filters find a car in seconds when the customer is on the line.</p>
+        </div>
+        <div class="slide-split__visual">
+          <img src="image%20(3).png" alt="Vehicle inventory listing with prices and status" width="1400" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 Maintenance -->
+    <section class="slide slide--dark" id="s-9" data-i="8">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">Workshop bills</p>
+          <h2>What you spent fixing each car</h2>
+          <p class="caption-label">On this screen</p>
+          <p class="slide-desc">A running <strong>job book</strong>: this <strong>Corolla</strong>—tyres at Pak Wheels; that <strong>Civic</strong>—denting at AutoMax; another line—<strong>PPF / detailing</strong> before handover. Each line says <strong>which car</strong>, <strong>what kind of work</strong>, <strong>which vendor</strong>, and a reference so you can match the bill.</p>
+          <p class="caption-label">Why dealers care</p>
+          <p class="slide-desc">Before you fix a sale price you see <strong>real cost in the metal</strong>. Bookkeeping stays tied to the vehicle—not lost in a WhatsApp photo.</p>
+        </div>
+        <div class="slide-split__visual">
+          <img src="image%20(4).png" alt="Maintenance table" width="1400" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Goga Expenses — entry form -->
+    <section class="slide slide--cream" id="s-10" data-i="9">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">Goga Expenses</p>
+          <h2>Enter a bill—same form every time</h2>
+          <p class="caption-label">On this screen</p>
+          <p class="slide-desc">The <strong>Goga Expenses</strong> entry screen: pick <strong>category</strong> and sub-category, short <strong>description</strong>, <strong>date</strong>, <strong>amount</strong>, <strong>who paid</strong>, and <strong>bank or cash</strong>. You can <strong>attach a receipt photo</strong> in the same flow so the proof sits with the line.</p>
+          <p class="caption-label">Why dealers care</p>
+          <p class="slide-desc">Staff don’t invent their own columns. Every expense hits the book the <strong>same way</strong>—so the monthly view and your accountant stay aligned.</p>
+        </div>
+        <div class="slide-split__visual">
+          <img src="image%20(2).png" alt="Goga Expenses entry form" width="1400" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Goga Expenses — month view -->
+    <section class="slide slide--dark" id="s-11" data-i="10">
+      <div class="slide-split">
+        <div class="slide-split__text">
+          <p class="slide-kicker">Goga Expenses</p>
+          <h2>Month spend &amp; reserves—live table</h2>
+          <p class="caption-label">On this screen</p>
+          <p class="slide-desc">The <strong>actual Goga Expenses</strong> view: tiles for <strong>this month’s total spend</strong> (and trend) plus <strong>reserves</strong>. Underneath, every line—<strong>car</strong>, <strong>work type</strong>, <strong>vendor</strong>, <strong>amount</strong>—so you see where the money went at a glance.</p>
+          <p class="caption-label">Why dealers care</p>
+          <p class="slide-desc">Owner asks <strong>“what did we burn this month?”</strong>—the answer is on one screen, tied to real cars and vendors, not a half-finished spreadsheet.</p>
+        </div>
+        <div class="slide-split__visual">
+          <img src="image%20(1).png" alt="Goga Expenses monthly summary and expense lines" width="1400" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 Pricing — CAMAS Motors -->
+    <section class="slide slide--cream" id="s-12" data-i="11" aria-labelledby="pricing-slide-title">
+      <div class="slide-body">
+        <div class="pricing-simple">
+          <header class="pricing-simple__head">
+            <p class="pricing-simple__eyebrow">CAMAS Motors</p>
+            <h2 class="pricing-simple__title" id="pricing-slide-title">Pricing</h2>
+            <p class="pricing-simple__subtitle">Implementation, support, deployment</p>
+          </header>
+          <div class="pricing-simple__cols">
+            <div class="pricing-simple__col">
+              <p class="pricing-simple__label">Implementation — one-time</p>
+              <p class="pricing-simple__price">PKR 175,000</p>
+              <p class="pricing-simple__note">Single payment for licence delivery and configuration. Recurring support is billed separately.</p>
+              <ul>
+                <li>Licensed Windows application; white-label (logo, identity, colours); initial database setup (cloud or on-premises, as agreed)</li>
+                <li>Core scope: investor, inventory, accounting, and expense management</li>
+                <li>One-month warranty on delivered scope; out-of-scope work quoted by complexity</li>
+              </ul>
+              <p class="pricing-simple__label">Infrastructure &amp; deployment</p>
+              <ul>
+                <li><strong>Cloud:</strong> ~<strong>PKR 7,000 / month</strong> to host (confirm quote) · <strong>100 GB</strong> storage · <strong>8 GB</strong> database</li>
+                <li><strong>On-site:</strong> your domain and server (PC or Raspberry Pi); one-time hardware cost; remote access via your VPN/network as applicable</li>
+              </ul>
+            </div>
+            <div class="pricing-simple__col">
+              <p class="pricing-simple__label">Technical support — recurring</p>
+              <p class="pricing-simple__note">First full calendar month after go-live: <strong>complimentary</strong> at the level below. Then:</p>
+              <p class="pricing-simple__price">PKR 12,499 / month</p>
+              <ul>
+                <li>Telephone and remote technical assistance</li>
+                <li>24/7 application availability and database security / backups — subject to agreed hosting and deployment</li>
+                <li>On-site visits on request — <strong>not included</strong> in the monthly fee</li>
+              </ul>
+            </div>
+          </div>
+          <p class="pricing-simple__foot">All amounts in PKR, exclusive of applicable taxes unless stated. Hosting is paid to the provider and is separate from the monthly support fee unless your agreement combines them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 Contact -->
+    <section class="slide slide--dark slide--center" id="s-13" data-i="12">
+      <p class="slide-kicker">Next step</p>
+      <h2>See it with your own eyes.</h2>
+      <p class="slide-sub slide-sub--hero" style="margin-top: 0.65rem">
+        Tell us <strong>your city</strong>, roughly <strong>how many cars</strong> you turn, and whether you want the <strong>database in the cloud</strong> or <strong>on a machine at your office</strong> (with VPN if people need in from outside). We’ll book a demo around <strong>a real dealer day</strong>—not a generic slideshow.
+      </p>
+      <p class="slide-sub slide-sub--contact-links" style="margin-top: 1rem">
+        <a href="mailto:sales@stackware.co.uk" style="color: var(--celtic-blue); font-weight: 600; text-decoration: none;">sales@stackware.co.uk</a><br />
+        <a href="tel:+447950965796" style="color: rgba(255,255,255,0.9); text-decoration: none;">+44 7950 965796</a><br />
+        <a href="https://www.stackware.co.uk" style="color: rgba(255,255,255,0.75); text-decoration: none;">www.stackware.co.uk</a>
+      </p>
+    </section>
+  </div>
+
+  <nav class="nav-ui" id="dots" aria-label="Slides"></nav>
+  <p class="hint">Scroll · ↑ ↓ · Space</p>
+
+  <script>
+    (function () {
+      var deck = document.getElementById("deck");
+      var slides = [].slice.call(document.querySelectorAll(".slide"));
+      var dots = document.getElementById("dots");
+      var activeIdx = 0;
+
+      slides.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", "Go to slide " + (i + 1));
+        b.addEventListener("click", function () {
+          activeIdx = i;
+          slides[i].scrollIntoView({ behavior: "smooth", block: "start" });
+          setActive(i);
+        });
+        dots.appendChild(b);
+      });
+
+      var buttons = [].slice.call(dots.querySelectorAll("button"));
+
+      function setActive(i) {
+        activeIdx = i;
+        buttons.forEach(function (btn, j) {
+          btn.setAttribute("aria-current", j === i ? "true" : "false");
+        });
+      }
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              if (!en.isIntersecting || en.intersectionRatio < 0.45) return;
+              var idx = slides.indexOf(en.target);
+              if (idx >= 0) setActive(idx);
+            });
+          },
+          { root: deck, threshold: [0.45, 0.55, 0.65] }
+        );
+        slides.forEach(function (s) {
+          io.observe(s);
+        });
+      } else {
+        setActive(0);
+      }
+
+      function step(dir) {
+        var next = Math.max(0, Math.min(activeIdx + dir, slides.length - 1));
+        slides[next].scrollIntoView({ behavior: "smooth", block: "start" });
+        setActive(next);
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+        if (e.key === "ArrowDown" || e.key === "PageDown") {
+          e.preventDefault();
+          step(1);
+        } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+          e.preventDefault();
+          step(-1);
+        } else if (e.key === " " && e.shiftKey) {
+          e.preventDefault();
+          step(-1);
+        } else if (e.key === " ") {
+          e.preventDefault();
+          step(1);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
